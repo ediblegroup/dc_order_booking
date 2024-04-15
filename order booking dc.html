@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Souda/Sales Order Calculator</title>
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<table>
+  <thead>
+    <tr>
+      <th>S L NO</th>
+      <th>Item Name</th>
+      <th>Unit/CS</th>
+      <th>Weight (KG)</th>
+      <th>QTY</th>
+      <th>Tons</th>
+      <th>Rate Par Ltr</th>
+      <th>Total Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>DC SOYA 1LTRP</td>
+      <td>12</td>
+      <td>10.8</td>
+      <td><input type="number" id="qty1" onchange="calculateTotal(1)"></td>
+      <td><span id="tons1"></span></td>
+      <td><input type="number" id="rate1" onchange="calculateTotal(1)"></td>
+      <td><span id="amount1"></span></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>DC SOYA 500P</td>
+      <td>24</td>
+      <td>10.8</td>
+      <td><input type="number" id="qty2" onchange="calculateTotal(2)"></td>
+      <td><span id="tons2"></span></td>
+      <td><span id="rate2"></span></td>
+      <td><span id="amount2"></span></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>DC SOYA 1LTRB</td>
+      <td>12</td>
+      <td>11.64</td>
+      <td><input type="number" id="qty3" onchange="calculateTotal(3)"></td>
+      <td><span id="tons3"></span></td>
+      <td><span id="rate3"></span></td>
+      <td><span id="amount3"></span></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>DC SOYA500B</td>
+      <td>24</td>
+      <td>11.82</td>
+      <td><input type="number" id="qty4" onchange="calculateTotal(4)"></td>
+      <td><span id="tons4"></span></td>
+      <td><span id="rate4"></span></td>
+      <td><span id="amount4"></span></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>DC SOYA5LTRJ</td>
+      <td>4</td>
+      <td>19.8</td>
+      <td><input type="number" id="qty5" onchange="calculateTotal(5)"></td>
+      <td><span id="tons5"></span></td>
+      <td><span id="rate5"></span></td>
+      <td><span id="amount5"></span></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>DC SOYA 200B</td>
+      <td>60</td>
+      <td>12.27</td>
+      <td><input type="number" id="qty6" onchange="calculateTotal(6)"></td>
+      <td><span id="tons6"></span></td>
+      <td><span id="rate6"></span></td>
+      <td><span id="amount6"></span></td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>DC SOYA TIN</td>
+      <td>1</td>
+      <td>15.9</td>
+      <td><input type="number" id="qty7" onchange="calculateTotal(7)"></td>
+      <td><span id="tons7"></span></td>
+      <td><input type="number" id="rate7" onchange="calculateTotal(7)"></td>
+      <td><span id="amount7"></span></td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>DC SOYA JAR</td>
+      <td>1</td>
+      <td>14.5</td>
+      <td><input type="number" id="qty8" onchange="calculateTotal(8)"></td>
+      <td><span id="tons8"></span></td>
+      <td><span id="rate8"></span></td>
+      <td><span id="amount8"></span></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>DC KGMO 1LTRP</td>
+      <td>12</td>
+      <td>10.8</td>
+      <td><input type="number" id="qty10" onchange="calculateTotal(10)"></td>
+      <td><span id="tons10"></span></td>
+      <td><input type="number" id="rate10" onchange="calculateTotal(10)"></td>
+      <td><span id="amount10"></span></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>DC KGMO 500P</td>
+      <td>24</td>
+      <td>10.8</td>
+      <td><input type="number" id="qty11" onchange="calculateTotal(11)"></td>
+      <td><span id="tons11"></span></td>
+      <td><span id="rate11"></span></td>
+      <td><span id="amount11"></span></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>DC KGMO 1LTRB</td>
+      <td>12</td>
+      <td>11.64</td>
+      <td><input type="number" id="qty12" onchange="calculateTotal(12)"></td>
+      <td><span id="tons12"></span></td>
+      <td><span id="rate12"></span></td>
+      <td><span id="amount12"></span></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>DC KGMO500B</td>
+      <td>24</td>
+      <td>11.82</td>
+      <td><input type="number" id="qty13" onchange="calculateTotal(13)"></td>
+      <td><span id="tons13"></span></td>
+      <td><span id="rate13"></span></td>
+      <td><span id="amount13"></span></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>DC KGMO5LTRJ</td>
+      <td>4</td>
+      <td>19.8</td>
+      <td><input type="number" id="qty14" onchange="calculateTotal(14)"></td>
+      <td><span id="tons14"></span></td>
+      <td><span id="rate14"></span></td>
+      <td><span id="amount14"></span></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>DC KGMO 200B</td>
+      <td>60</td>
+      <td>12.27</td>
+      <td><input type="number" id="qty15" onchange="calculateTotal(15)"></td>
+      <td><span id="tons15"></span></td>
+      <td><span id="rate15"></span></td>
+      <td><span id="amount15"></span></td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>DC KGMO TIN</td>
+      <td>1</td>
+      <td>15.9</td>
+      <td><input type="number" id="qty16" onchange="calculateTotal(16)"></td>
+      <td><span id="tons16"></span></td>
+      <td><input type="number" id="rate16" onchange="calculateTotal(16)"></td>
+      <td><span id="amount16"></span></td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>DC KGMO JAR</td>
+      <td>1</td>
+      <td>14.5</td>
+      <td><input type="number" id="qty17" onchange="calculateTotal(17)"></td>
+      <td><span id="tons17"></span></td>
+      <td><span id="rate17"></span></td>
+      <td><span id="amount17"></span></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>DC SUN 1LTRP</td>
+      <td>12</td>
+      <td>10.8</td>
+      <td><input type="number" id="qty19" onchange="calculateTotal(19)"></td>
+      <td><span id="tons19"></span></td>
+      <td><input type="number" id="rate19" onchange="calculateTotal(19)"></td>
+      <td><span id="amount19"></span></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>DC SUN 1LTRB</td>
+      <td>12</td>
+      <td>11.64</td>
+      <td><input type="number" id="qty20" onchange="calculateTotal(20)"></td>
+      <td><span id="tons20"></span></td>
+      <td><span id="rate20"></span></td>
+      <td><span id="amount20"></span></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>DC SUN 500B</td>
+      <td>24</td>
+      <td>11.82</td>
+      <td><input type="number" id="qty21" onchange="calculateTotal(21)"></td>
+      <td><span id="tons21"></span></td>
+      <td><span id="rate21"></span></td>
+      <td><span id="amount21"></span></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>DC SUN 5LTRJ</td>
+      <td>4</td>
+      <td>19.8</td>
+      <td><input type="number" id="qty22" onchange="calculateTotal(22)"></td>
+      <td><span id="tons22"></span></td>
+      <td><input type="number" id="rate22" onchange="calculateTotal(22)"></td>
+      <td><span id="amount22"></span></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>DC SUN 15 KG</td>
+      <td>1</td>
+      <td>15.9</td>
+      <td><input type="number" id="qty23" onchange="calculateTotal(23)"></td>
+      <td><span id="tons23"></span></td>
+      <td><input type="number" id="rate23" onchange="calculateTotal(23)"></td>
+      <td><span id="amount23"></span></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>RICE 1LTRP</td>
+      <td>12</td>
+      <td>10.8</td>
+      <td><input type="number" id="qty25" onchange="calculateTotal(25)"></td>
+      <td><span id="tons25"></span></td>
+      <td><input type="number" id="rate25" onchange="calculateTotal(25)"></td>
+      <td><span id="amount25"></span></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>RICE 15 Ltr TIN</td>
+      <td>1</td>
+      <td>13.5</td>
+      <td><input type="number" id="qty26" onchange="calculateTotal(26)"></td>
+      <td><span id="tons26"></span></td>
+      <td><input type="number" id="rate26" onchange="calculateTotal(26)"></td>
+      <td><span id="amount26"></span></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>RICE 15 KG TIN</td>
+      <td>1</td>
+      <td>15.9</td>
+      <td><input type="number" id="qty27" onchange="calculateTotal(27)"></td>
+      <td><span id="tons27"></span></td>
+      <td><input type="number" id="rate27" onchange="calculateTotal(27)"></td>
+      <td><span id="amount27"></span></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>SATH GOLD 1LTRP</td>
+      <td>10</td>
+      <td>8.5</td>
+      <td><input type="number" id="qty29" onchange="calculateTotal(29)"></td>
+      <td><span id="tons29"></span></td>
+      <td><input type="number" id="rate29" onchange="calculateTotal(29)"></td>
+      <td><span id="amount29"></span></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>SATHI GOLD 500P</td>
+      <td>20</td>
+      <td>9</td>
+      <td><input type="number" id="qty30" onchange="calculateTotal(30)"></td>
+      <td><span id="tons30"></span></td>
+      <td><span id="rate30"></span></td>
+      <td><span id="amount30"></span></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>SATH GOLD TIN</td>
+      <td>1</td>
+      <td>15.9</td>
+      <td><input type="number" id="qty31" onchange="calculateTotal(31)"></td>
+      <td><span id="tons31"></span></td>
+      <td><input type="number" id="rate31" onchange="calculateTotal(31)"></td>
+      <td><span id="amount31"></span></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>SHIVA GOLD/IVF</td>
+      <td>1</td>
+      <td>15.9</td>
+      <td><input type="number" id="qty33" onchange="calculateTotal(33)"></td>
+      <td><span id="tons33"></span></td>
+      <td><input type="number" id="rate33" onchange="calculateTotal(33)"></td>
+      <td><span id="amount33"></span></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="4">Total</td>
+      <td><span id="totalQty">0</span></td>
+      <td><span id="totalTons">0</span></td>
+      <td></td>
+      <td><span id="totalAmount">0</span></td>
+    </tr>
+  </tfoot>
+</table>
+
+<!-- Buttons -->
+<button onclick="clearSheet()">Clear Sheet</button>
+<button onclick="refreshPage()">Refresh</button>
+<button onclick="printDocument()">Print</button>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Call updateTotals once the DOM is fully loaded
+  updateTotals();
+});
+function calculateTotal(row) {
+  var qty = document.getElementById('qty' + row).value;
+  var tons = document.getElementById('tons' + row);
+  var rate = document.getElementById('rate' + row);
+  var amount = document.getElementById('amount' + row);
+
+  switch (row) {
+    case 1:
+      tons.textContent = (parseFloat(qty) * 10.8 / 1000).toFixed(3);
+      amount.textContent = (parseFloat(qty) * 12 * parseFloat(rate.value)).toFixed(2);
+      break;
+    case 2:
+      tons.textContent = (parseFloat(qty) * 10.8 / 1000).toFixed(3);
+      rate.textContent = ((parseFloat(document.getElementById('rate1').value) + 1) / 2).toFixed(3);
+      amount.textContent = (parseFloat(qty) * 24 * parseFloat(rate.textContent)).toFixed(2);
+      break;
+    case 3:
+      tons.textContent = (parseFloat(qty) * 11.64 / 1000).toFixed(3);
+      rate.textContent = (parseFloat(document.getElementById('rate1').value) + 3.15).toFixed(3);
+      amount.textContent = (parseFloat(qty) * 12 * parseFloat(rate.textContent)).toFixed(2);
+      break;
+    case 4:
+      tons.textContent = (parseFloat(qty) *  11.82 / 1000).toFixed(3);
+      rate.textContent = ((parseFloat(document.getElementById('rate1').value) + 6.3) / 2).toFixed(3);
+      amount.textContent = (parseFloat(qty) * 24 * parseFloat(rate.textContent)).toFixed(2);
+      break;
+    case 5:
+      tons.textContent = (parseFloat(qty) *  19.8 / 1000).toFixed(3);
+      rate.textContent = (parseFloat(document.getElementById('rate1').value) * 5 + 25).toFixed(3);
+      amount.textContent = (parseFloat(qty) * 4 * parseFloat(rate.textContent)).toFixed(2);
+      break;
+    case 6:
+      tons.textContent = (parseFloat(qty) *  12.27 / 1000).toFixed(3);
+      rate.textContent = ((parseFloat(document.getElementById('rate1').value) + 14) / 5).toFixed(3);
+      amount.textContent = (parseFloat(qty) * 60 * parseFloat(rate.textContent)).toFixed(2);
+      break;
+    case 7:
+      tons.textContent = (parseFloat(qty) * 15.9 / 1000).toFixed(3);
+      amount.textContent = (parseFloat(qty) * parseFloat(rate.value)).toFixed(2);
+      break;
+    case 8:
+      tons.textContent = (parseFloat(qty) * 14.5 / 1000).toFixed(3);
+      rate.textContent = (parseFloat(document.getElementById('rate7').value) + 20).toFixed(3);
+      amount.textContent = (parseFloat(qty) * parseFloat(rate.textContent)).toFixed(2);
+      break;
+      case 10:
+        tons.textContent = (parseFloat(qty) * 10.8 / 1000).toFixed(3);
+        amount.textContent = (parseFloat(qty) * 12 * parseFloat(rate.value)).toFixed(2);
+        break;
+    case 11:
+        tons.textContent = (parseFloat(qty) * 10.8 / 1000).toFixed(3);
+        rate.textContent = ((parseFloat(document.getElementById('rate10').value) + 1) / 2).toFixed(3);
+        amount.textContent = (parseFloat(qty) * 24 * parseFloat(rate.textContent)).toFixed(2);
+        break;
+    case 12:
+        tons.textContent = (parseFloat(qty) * 11.64 / 1000).toFixed(3);
+        rate.textContent = (parseFloat(document.getElementById('rate10').value) + 3.15).toFixed(3);
+        amount.textContent = (parseFloat(qty) * 12 * parseFloat(rate.textContent)).toFixed(2);
+        break;
+    case 13:
+        tons.textContent = (parseFloat(qty) * 11.82 / 1000).toFixed(3);
+        rate.textContent = ((parseFloat(document.getElementById('rate10').value) + 6.3) / 2).toFixed(3);
+        amount.textContent = (parseFloat(qty) * 24 * parseFloat(rate.textContent)).toFixed(2);
+        break;
+    case 14:
+        tons.textContent = (parseFloat(qty) * 19.8 / 1000).toFixed(3);
+        rate.textContent = (parseFloat(document.getElementById('rate10').value) * 5 + 25).toFixed(3);
+        amount.textContent = (parseFloat(qty) * 4 * parseFloat(rate.textContent)).toFixed(2);
+        break;
+    case 15:
+        tons.textContent = (parseFloat(qty) * 12.27 / 1000).toFixed(3);
+        rate.textContent = ((parseFloat(document.getElementById('rate10').value) + 14) / 5).toFixed(3);
+        amount.textContent = (parseFloat(qty) * 60 * parseFloat(rate.textContent)).toFixed(2);
+        break;
+    case 16:
+        tons.textContent = (parseFloat(qty) * 15.9 / 1000).toFixed(3);
+        amount.textContent = (parseFloat(qty) * parseFloat(rate.value)).toFixed(2);
+        break;
+    case 17:
+        tons.textContent = (parseFloat(qty) * 14.5 / 1000).toFixed(3);
+        rate.textContent = (parseFloat(document.getElementById('rate16').value) + 20).toFixed(3);
+        amount.textContent = (parseFloat(qty) * parseFloat(rate.textContent)).toFixed(2);
+        break;
+    case 19:
+        tons.textContent = (parseFloat(qty) * 10.8 / 1000).toFixed(3);
+        amount.textContent = (parseFloat(qty) * 12 * parseFloat(rate.value)).toFixed(2);
+        break;
+    case 20:
+        tons.textContent = (parseFloat(qty) * 11.64 / 1000).toFixed(3);
+        rate.textContent = (parseFloat(document.getElementById('rate19').value) + 3.15).toFixed(3);
+        amount.textContent = (parseFloat(qty) * 12 * parseFloat(rate.textContent)).toFixed(2);
+        break;
+    case 21:
+        tons.textContent = (parseFloat(qty) * 11.82 / 1000).toFixed(3);
+        rate.textContent = (parseFloat(document.getElementById('rate19').value) + 3.15).toFixed(3);
+        amount.textContent = (parseFloat(qty) * 24 * parseFloat(rate.textContent)).toFixed(2);
+        break;
+    case 22:
+        tons.textContent = (parseFloat(qty) * 19.8 / 1000).toFixed(3);
+        amount.textContent = (parseFloat(qty) * parseFloat(rate.value)).toFixed(2);
+        break;
+    case 23:
+        tons.textContent = (parseFloat(qty) * 15.9 / 1000).toFixed(3);
+        amount.textContent = (parseFloat(qty) * parseFloat(rate.value)).toFixed(2);
+        break;
+    case 25:
+        tons.textContent = (parseFloat(qty) * 10.8 / 1000).toFixed(3);
+        amount.textContent = (parseFloat(qty) * 12 * parseFloat(rate.value)).toFixed(2);
+        break;
+    case 26:
+        tons.textContent = (parseFloat(qty) * 13.5 / 1000).toFixed(3);
+        amount.textContent = (parseFloat(qty) * parseFloat(rate.value)).toFixed(2);
+        break;
+    case 27:
+        tons.textContent = (parseFloat(qty) * 15.9 / 1000).toFixed(3);
+        amount.textContent = (parseFloat(qty) * parseFloat(rate.value)).toFixed(2);
+        break;
+    case 29:
+        tons.textContent = (parseFloat(qty) * 8.5 / 1000).toFixed(3);
+        amount.textContent = (parseFloat(qty) * 10 * parseFloat(rate.value)).toFixed(2);
+        break;
+    case 30:
+        tons.textContent = (parseFloat(qty) * 9 / 1000).toFixed(3);
+        rate.textContent = ((parseFloat(document.getElementById('rate29').value) + 1) / 2).toFixed(3);
+        amount.textContent = (parseFloat(qty) * 20 * parseFloat(rate.textContent)).toFixed(2);
+        break;
+    case 31:
+        tons.textContent = (parseFloat(qty) * 15.9 / 1000).toFixed(3);
+        amount.textContent = (parseFloat(qty) * parseFloat(rate.value)).toFixed(3);
+        break;
+    case 33:
+        tons.textContent = (parseFloat(qty) * 15.9 / 1000).toFixed(3);
+        amount.textContent = (parseFloat(qty) * parseFloat(rate.value)).toFixed(2);
+        break;
+    default:
+      break;
+  }
+  updateTotals();
+}
+
+function updateTotals() {
+  var totalQty = 0;
+  var totalTons = 0;
+  var totalAmount = 0;
+  for (var i = 1; i <= 33; i++) {
+    var qty = parseFloat(document.getElementById('qty' + i).value) || 0;
+    var tons = parseFloat(document.getElementById('tons' + i).textContent) || 0;
+    var amount = parseFloat(document.getElementById('amount' + i).textContent) || 0;
+    totalQty += isNaN(qty) ? 0 : qty; // Handle NaN case
+    totalTons += isNaN(tons) ? 0 : tons; // Handle NaN case
+    totalAmount += isNaN(amount) ? 0 : amount; // Handle NaN case
+  }
+  document.getElementById('totalQty').textContent = totalQty.toFixed(3);
+  document.getElementById('totalTons').textContent = totalTons.toFixed(3);
+  document.getElementById('totalAmount').textContent = totalAmount.toFixed(3);
+}
+
+
+function clearSheet() {
+  var inputs = document.querySelectorAll('input[type="number"]');
+  inputs.forEach(function(input) {
+    input.value = '';
+  });
+
+  var spans = document.querySelectorAll('span');
+  spans.forEach(function(span) {
+    span.textContent = '';
+  });
+}
+
+function refreshPage() {
+  location.reload();
+}
+
+function printDocument() {
+  window.print();
+}
+</script>
+
+</body>
+</html> 
